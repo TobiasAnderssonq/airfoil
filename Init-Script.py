@@ -76,24 +76,6 @@ if sys.argv[1] == "create":
     else:
 	print 'Sleeping 15 seconds for worker'
 	time.sleep(15)
-    #inst_status = instance.status
-    #print "Instance: " + instance.name + " is in " + inst_status + " state, sleeping for 10 seconds more..."
-    #time.sleep(10)
-    #print "Instance: " + instance.name + " is in " + inst_status + " state"
-    #print "Check if instance is stuck!"
-    #instance = nova.servers.get(instance.id)
-    #print "Instance ID:" + instance.id
-    #inst_status = instance.status
-    #if (inst_status == 'BUILD'):
-    #    print("Instance is stuck kill it!!!!")
-    #    nova.servers.delete(instance)
-    #    sys.exit(0)
-    #print("Instance is ok, continue!")
-    # while inst_status == 'BUILD':
-    #     print "Instance: " + instance.name + " is in " + inst_status + " state, sleeping for 5 seconds more..."
-    #     time.sleep(5)
-    #     instance = nova.servers.get(instance.id)
-    #     inst_status = instance.status
 
     print "Instance: " + instance.name + " is in " + inst_status + " state"
     if sys.argv[3] == "Master":
