@@ -1,0 +1,26 @@
+#cloud-config
+
+runcmd:
+#- sudo apt-get install gmsh -y
+#- sudo pip install Flask
+#- sudo pip install python-swiftclient
+#- sudo pip install python-keystoneclient
+ - cd /home/ubuntu/
+ - git clone -b Tobbes https://bitbucket.org/DarkLog1x/airfoil-proj.git
+ - sleep 4
+ - mkdir code
+ - mv /home/ubuntu/airfoil-proj/test_celery/ ./code/
+ - mv /home/ubuntu/airfoil-proj/naca_airfoil/ ./naca_airfoil/
+ - mkdir /home/ubuntu/naca_airfoil/geo_files/
+ - mkdir /home/ubuntu/naca_airfoil/msh_files/
+ - mkdir /home/ubuntu/code/test_celery/results/
+ - rm -rf airfoil-proj
+ - sudo service rabbitmq-server stop
+ - sudo chmod 777 -R /home/ubuntu/
+ - cd /home/ubuntu/code/test_celery/
+ - export C_FORCE_ROOT='true'
+ - export LC_ALL=C
+ - echo 130.238.28.139 > floating_ip.txt
+ - sudo chmod 777 floating_ip.txt
+ - celery -A worker_task worker --loglevel=info --autoscale=1,1 -n worker3
+
